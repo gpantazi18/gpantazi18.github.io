@@ -27,8 +27,8 @@
 
     </head>
     <body class="font-sans antialiased">
-        
-    
+
+
         <nav class="sticky top-0 z-50 bg-white shadow dark:bg-gray-800"  x-data="{ show: false }">
         <div class="container px-6 py-1 mx-auto md:flex md:justify-between md:items-center">
             <div class="flex items-center justify-between">
@@ -186,6 +186,351 @@
     </svg>
 
 
+    <div class="mt-20 mb-20">
+        <!-- Include Pannellum script -->
+  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+
+  <section class="">
+
+    <div class="relative flex flex-col items-center max-w-screen-xl px-4 mx-auto md:flex-row sm:px-6 p-8">
+        <div class="flex items-center py-5 md:w-1/3 md:pb-20 md:pt-10 md:pr-10">
+            <div class="text-left">
+                <h4
+                    class="text-2xl font-extrabold leading-10 tracking-tight text-gray-800 sm:text-3xl sm:leading-none md:text-4xl">
+                    <span class="font-bold text-blue-500">Take Virtual Tour</span>
+                </h4>
+                <p class="max-w-md mx-auto mt-3 text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                    Our interactive tour allows you to explore every corner of our facilities from the comfort of your home.
+                </p>
+                <div class="mt-5 sm:flex md:mt-8">
+                    <div class="rounded-md shadow"><button  onclick="takeVirtualTour()"
+                            class="flex items-center justify-center w-full px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue md:py-4 md:text-lg md:px-10">
+                            Getting started
+                        </button></div>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center py-5 w-full md:w-2/3 md:pb-20 md:pt-10 md:pl-10">
+            <div class="relative w-full p-3 rounded  md:p-8">
+                <div  id="panorama" class="rounded-lg bg-white text-black w-full">
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <section>
+
+
+
+  <script type="text/javascript">
+
+      function takeVirtualTour(){
+          pannellum.toggleFullscreen()
+      }
+
+      var pannellum =  pannellum.viewer('panorama', {
+
+          "default": {
+            //   "firstScene": "endrance",
+              "firstScene": "diadromos",
+              // "author": "Matthew Petroff",
+              "sceneFadeDuration": 1000,
+              "mouseZoom": 'fullscreenonly',
+          },
+
+          "scenes": {
+
+              "endrance": {
+                  "title": "Endrance",
+                  "hfov": 200, // zoom
+                  "pitch": 2,
+                  "yaw": -23,
+                  "type": "equirectangular",
+                  "panorama": "images/virtual_tour/entranceHD.jpg",
+                  "autoLoad": true,
+
+                  "hotSpots": [
+                      {
+                          "pitch": 0,
+                          "yaw": 10,
+                          "type": "scene",
+                          "text": "Lets go inside",
+                          "sceneId": "diadromos",
+                    //   "targetYaw": -23,
+                    //   "targetPitch": 2
+                      }
+                  ]
+              },
+
+              "diadromos": {
+                  "title": "Ηallway",
+                  "hfov": 200,
+                  "type": "equirectangular",
+                  "panorama": "images/virtual_tour/hallwayHD.jpg",
+                  "autoLoad": true,
+                  "hotSpots": [
+                      {
+                          "pitch": -0.68,
+                          "yaw": 55,
+                          "type": "scene",
+                          "text": "Room 2",
+                          "sceneId": "room2",
+                        //   "targetYaw": -23,
+                        //   "targetPitch": 2
+                      },
+                      {
+                          "pitch": -0.68,
+                          "yaw": -60,
+                          "type": "scene",
+                          "text": "Room 1",
+                          "sceneId": "room1",
+                        //   "targetYaw": -23,
+                        //   "targetPitch": 2
+                      },
+                      {
+                          "pitch": -0.68,
+                          "yaw": 0,
+                          "type": "scene",
+                          "text": "Go to other rooms' areas",
+                          "sceneId": "common1",
+                        //   "targetYaw": -23,
+                        //   "targetPitch": 2
+                      },
+                      {
+                          "pitch": -0.68,
+                          "yaw": 166,
+                          "type": "scene",
+                          "text": "Go outside",
+                          "sceneId": "endrance",
+                          "targetYaw": -23,
+                          "targetPitch": 2
+                      },
+                  ]
+              },
+
+              // Room 1 ===================================
+
+              "room1": {
+                  "title": "Room 1",
+                  "hfov": 500, // zoom
+                  "pitch": -5,
+                  "yaw": -168,
+                  "type": "equirectangular",
+                  "panorama": "images/virtual_tour/room1HD.jpg",
+                  "autoLoad": true,
+
+                  "hotSpots": [
+                      {
+                          "pitch": -8,
+                          "yaw": -35,
+                          "type": "scene",
+                          "text": "Lets go to Hallway",
+                          "sceneId": "diadromos",
+                    //   "targetYaw": -23,
+                    //   "targetPitch": 2
+                      },
+                      {
+                          "pitch": -9,
+                          "yaw": -136,
+                          "type": "scene",
+                          "text": "Check out the Bathroom",
+                          "sceneId": "room1bath",
+                    //   "targetYaw": -23,
+                    //   "targetPitch": 2
+                      },
+
+                      {
+                          "pitch": -9,
+                          "yaw": 116,
+                          "type": "scene",
+                          "text": "Check out the loft",
+                          "sceneId": "room1up",
+                    //   "targetYaw": -23,
+                    //   "targetPitch": 2
+                      }
+                  ]
+              },
+
+              "room1bath": {
+                  "title": "Room 1 Bathroom",
+                  "hfov": 500, // zoom
+                //   "pitch": -5,
+                //   "yaw": -168,
+                  "type": "equirectangular",
+                  "panorama": "images/virtual_tour/room1bathHD.jpg",
+                  "autoLoad": true,
+
+                  "hotSpots": [
+                      {
+                          "pitch": -8,
+                          "yaw": 10,
+                          "type": "scene",
+                          "text": "Lets go back to room",
+                          "sceneId": "room1",
+                    //   "targetYaw": -23,
+                    //   "targetPitch": 2
+                      },
+
+                  ]
+              },
+              "room1up": {
+                  "title": "Room 1 Loft",
+                  "hfov": 500, // zoom
+                  "pitch": -18,
+                  "yaw": 40,
+                  "type": "equirectangular",
+                  "panorama": "images/virtual_tour/room1upHD.jpg",
+                  "autoLoad": true,
+
+                  "hotSpots": [
+                      {
+                          "pitch": -26,
+                          "yaw": 103,
+                          "type": "scene",
+                          "text": "Lets get down",
+                          "sceneId": "room1",
+                    //   "targetYaw": -23,
+                    //   "targetPitch": 2
+                      },
+
+                  ]
+              },
+
+              // Room 2 ===================================
+
+              "room2": {
+                  "title": "Room 2",
+                  "hfov": 500, // zoom
+                  "pitch": 1,
+                  "yaw": 6,
+                  "type": "equirectangular",
+                  "panorama": "images/virtual_tour/room2HD.jpg",
+                  "autoLoad": true,
+
+                  "hotSpots": [
+                      {
+                          "pitch": -8,
+                          "yaw": -35,
+                          "type": "scene",
+                          "text": "Check out the Bathroom",
+                          "sceneId": "room2bath",
+                    //   "targetYaw": -23,
+                    //   "targetPitch": 2
+                      },
+                      {
+                          "pitch": -9,
+                          "yaw": -176,
+                          "type": "scene",
+                          "text": "Lets go to Hallway",
+                          "sceneId": "diadromos",
+                    //   "targetYaw": -23,
+                    //   "targetPitch": 2
+                      },
+
+                      {
+                          "pitch": -9,
+                          "yaw": 45,
+                          "type": "scene",
+                          "text": "Check out the loft",
+                          "sceneId": "room2up",
+                    //   "targetYaw": -23,
+                    //   "targetPitch": 2
+                      }
+                  ]
+              },
+
+              "room2bath": {
+                  "title": "Room 2 Bathroom",
+                  "hfov": 500, // zoom
+                  "pitch": -8,
+                  "yaw": 93,
+                  "type": "equirectangular",
+                  "panorama": "images/virtual_tour/room2bathHD.jpg",
+                  "autoLoad": true,
+
+                  "hotSpots": [
+                      {
+                          "pitch": -4,
+                          "yaw": -140,
+                          "type": "scene",
+                          "text": "Lets go back to room",
+                          "sceneId": "room2",
+                    //   "targetYaw": -23,
+                    //   "targetPitch": 2
+                      },
+
+                  ]
+              },
+              "room2up": {
+                  "title": "Room 2 Loft",
+                  "hfov": 500, // zoom
+                  "pitch": -18,
+                  "yaw": 40,
+                  "type": "equirectangular",
+                  "panorama": "images/virtual_tour/room2UpHD.jpg",
+                  "autoLoad": true,
+
+                  "hotSpots": [
+                      {
+                          "pitch": -28,
+                          "yaw": -158,
+                          "type": "scene",
+                          "text": "Lets get down",
+                          "sceneId": "room2",
+                    //   "targetYaw": -23,
+                    //   "targetPitch": 2
+                      },
+
+                  ]
+              },
+
+              "common1": {
+                  "title": "Comon Area",
+                  "hfov": 200, // zoom
+                  "pitch": 2,
+                  "yaw": -23,
+                  "type": "equirectangular",
+                  "panorama": "images/virtual_tour/garden1HD.jpg",
+                  "autoLoad": true,
+
+                  "hotSpots": [
+                      {
+                        "pitch": 4,
+                        "yaw": 163,
+                        "type": "scene",
+                        "text": "Lets go back to Hallway",
+                        "sceneId": "diadromos",
+                    //   "targetYaw": -23,
+                    //   "targetPitch": 2
+                      }
+                  ]
+              },
+          }
+      });
+
+      pannellum.on('mouseup', function(event) {
+            var currentPitch = pannellum.getPitch();
+            var currentYaw = pannellum.getYaw();
+            // Print pitch and yaw values
+            console.log('Pitch:', currentPitch, 'Yaw:', currentYaw);
+
+        });
+
+  </script>
+
+
+<style>
+    /* Panorama container */
+    #panorama {
+
+        width: 100%;
+        height: 500px;
+        position: relative;
+    }
+</style>
+    </div>
+
     
     <div
     class="container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-128 lg:py-16 lg:flex-row lg:items-center lg:space-x-6">
@@ -241,6 +586,8 @@
             alt="Try to reload !">
     </div>
 </div>
+
+
 
 
 
@@ -612,14 +959,14 @@
                     
                 </div>
 
-               
+
                 <div class="lg:w-1/3 md:w-1/2 w-full px-4">
                     <h2 class="title-font font-medium text-white tracking-widest text-sm mb-3">Near By Me</h2>
                     <nav class="list-none mb-10">
                         <li>
                             <a href="https://www.google.com/maps/dir/Kostaki+Pantelidi,+Larnaca,+Cyprus/Church+of+Saint+Lazarus,+Πλατεία,+Ayiou+Lazarou,+Larnaca,+Cyprus/@34.9139371,33.6307638,17z/data=!4m13!4m12!1m5!1m1!1s0x14e082a459b2ddab:0xdc7768b678bea409!2m2!1d33.632267!2d34.9143825!1m5!1m1!1s0x14e082a3526ec4a7:0xf5832e2d9a8e048a!2m2!1d33.6347971!2d34.9115001"
                                 class="text-gray-400 hover:text-white">Saint Lazaros</a>
-                        </li>                    
+                        </li>
                     </nav>
                 </div>
             </div>
@@ -630,16 +977,16 @@
                     
                 </p>
 
-             
+
 
                 <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
                     <a class="text-gray-400 hover:text-white" href="https://www.google.com/maps/dir//Kostaki+Pantelidi+16,+Larnaca/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x14e082a458072fff:0x7722065299c56ef?sa=X&ved=2ahUKEwjq9IDi5dr3AhURzYUKHZbyDk4QwwV6BAgGEAI" class="text-gray-400">
                        Location: Kostaki Pantelidi 16, 6021 Larnaca Cyprus
-                       
+
                         
                     </a>
-                 
-                </span> 
+
+                </span>
 
                 
                 
@@ -647,7 +994,7 @@
         </div>
     </footer>
 
-        
+
     </body>
-    
+
 </html>
