@@ -225,11 +225,35 @@
 
   <script type="text/javascript">
 
+    function setHfovAccordingToScreenWidth() {
+        let screenWidth = window.innerWidth;
+
+        console.log(screenWidth, "screenWidth()")
+
+        if(screenWidth >= 1200){
+            return 110
+        }
+
+        if(screenWidth >= 800){
+            return 90
+        }
+
+        if(screenWidth >= 360){
+            return 70
+        }
+
+        return 70
+    }
+
+
+    var initHfov = setHfovAccordingToScreenWidth()
+
+
       function takeVirtualTour(){
-          pannellum.toggleFullscreen()
+        pannellumView.toggleFullscreen()
       }
 
-      var pannellum =  pannellum.viewer('panorama', {
+      var pannellumView =  pannellum.viewer('panorama', {
 
           "default": {
             //   "firstScene": "entrance",
@@ -243,12 +267,14 @@
 
               "entrance": {
                   "title": "Entrance",
-                  "hfov": 200, // zoom
+                  "hfov": initHfov, // zoom
+
                   "pitch": 2,
                   "yaw": -23,
                   "type": "equirectangular",
                   "panorama": "images/virtual_tour/entranceMOP.jpg",
                   "autoLoad": true,
+
 
                   "hotSpots": [
                       {
@@ -265,7 +291,7 @@
 
               "diadromos": {
                   "title": "Ηallway",
-                  "hfov": 200,
+                  "hfov": initHfov, // zoom
                   "type": "equirectangular",
                   "panorama": "images/virtual_tour/hallwayMOP.jpg",
                   "autoLoad": true,
@@ -313,7 +339,7 @@
 
               "room1": {
                   "title": "Room 1",
-                  "hfov": 500, // zoom
+                  "hfov": initHfov, // zoom
                   "pitch": -5,
                   "yaw": -168,
                   "type": "equirectangular",
@@ -354,7 +380,7 @@
 
               "room1bath": {
                   "title": "Room 1 Bathroom",
-                  "hfov": 500, // zoom
+                  "hfov": initHfov, // zoom
                 //   "pitch": -5,
                 //   "yaw": -168,
                   "type": "equirectangular",
@@ -376,7 +402,7 @@
               },
               "room1up": {
                   "title": "Room 1 Loft",
-                  "hfov": 500, // zoom
+                  "hfov": initHfov, // zoom
                   "pitch": -18,
                   "yaw": 40,
                   "type": "equirectangular",
@@ -401,7 +427,7 @@
 
               "room2": {
                   "title": "Room 2",
-                  "hfov": 500, // zoom
+                  "hfov": initHfov, // zoom
                   "pitch": 1,
                   "yaw": 6,
                   "type": "equirectangular",
@@ -442,7 +468,7 @@
 
               "room2bath": {
                   "title": "Room 2 Bathroom",
-                  "hfov": 500, // zoom
+                  "hfov": initHfov, // zoom
                   "pitch": -8,
                   "yaw": 93,
                   "type": "equirectangular",
@@ -464,7 +490,7 @@
               },
               "room2up": {
                   "title": "Room 2 Loft",
-                  "hfov": 500, // zoom
+                  "hfov": initHfov, // zoom
                   "pitch": -18,
                   "yaw": 40,
                   "type": "equirectangular",
@@ -487,7 +513,7 @@
 
               "common1": {
                   "title": "Common Area",
-                  "hfov": 200, // zoom
+                  "hfov": initHfov, // zoom
                   "pitch": 2,
                   "yaw": -23,
                   "type": "equirectangular",
@@ -509,11 +535,21 @@
           }
       });
 
-      pannellum.on('mouseup', function(event) {
-            var currentPitch = pannellum.getPitch();
-            var currentYaw = pannellum.getYaw();
+
+      pannellumView.setHfovBounds([10, initHfov])
+      pannellumView.on('zoomchange', function(event) {
+        pannellumView.setHfovBounds([10, initHfov])
+      })
+      pannellumView.on('mouseup', function(event) {
+            var currentPitch = pannellumView.getPitch();
+            var currentYaw = pannellumView.getYaw();
+            var currentHfov = pannellumView.getHfov();
+
+
+            // count--
+
             // Print pitch and yaw values
-            console.log('Pitch:', currentPitch, 'Yaw:', currentYaw);
+            console.log('Pitch:', currentPitch, 'Yaw:', currentYaw, "Hfov", currentHfov);
 
         });
 
